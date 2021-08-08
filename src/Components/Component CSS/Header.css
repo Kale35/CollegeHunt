@@ -1,0 +1,34 @@
+.header {
+  border-bottom: 1px solid #aaa;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__logo {
+  display: flex;
+  margin-top: 15px;
+  margin-left: 20px;
+  justify-self: flex-end;
+}
+
+.header__buttons {
+  display: flex;
+  margin-top: 10px;
+  margin-right: 20px;
+  justify-self: flex-end;
+}
+
+.header__button {
+  background-color: black;
+  width: 80px;
+  height: 40px;
+  margin-left: 20px;
+}
+
+.header__button > Button {
+  width: 100%;
+  height: 100%;
+  color: white;
+  float: right;
+}

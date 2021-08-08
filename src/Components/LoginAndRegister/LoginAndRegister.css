@@ -1,0 +1,50 @@
+.login-register-modal {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 9;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    background-color: black;
+}
+
+.login-register-modal__wrapper {
+    width: 500px;
+    height: 600px;
+    background-color: white;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.login-register-modal__logo {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    padding: 20px 0;
+}
+.login-register-modal__tabs {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: flex-start;
+}
+
+.login-register-modal__tabs > button {
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+
+.login-register-inner-wrapper {
+    display: flex;
+    flex-direction: column;
+}
