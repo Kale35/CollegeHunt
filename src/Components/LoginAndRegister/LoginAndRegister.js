@@ -69,7 +69,18 @@ const LoginWrapper = () => {
 };
 
 const RegisterWrapper = () => {
-    return <div className="login-register-inner-wrapper">Register</div>;
+    return( 
+        <div className="login-register-inner-wrapper">
+            <form className="register-form">
+                <input type="text" className="login-register-input" id="register-email" placeholder="Enter your email"/>
+                <input type="text" className="login-register-input" id="register-username" placeholder="Create your username"/>
+                <input type="text" className="login-register-input" id="register-username" placeholder="Create your password"/>
+                <input type="text" className="login-register-input" id="register-username" placeholder="Confirm your password"/>
+                
+
+            </form>
+        </div>
+    );
 };
 
 export default LoginAndRegister;
