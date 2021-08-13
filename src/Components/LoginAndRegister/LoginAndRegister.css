@@ -52,6 +52,7 @@
 .register-form {
     display: flex;
     flex-direction: column;
+    margin-left: 10px;
 }
 
 .login-register-input {
@@ -64,4 +65,16 @@
 
 .login-register-input[type='text'] {
     padding-left: 10px;
+}
+
+.login-register-input[type='email'] {
+    padding-left: 10px;
+}
+
+.login-register-input[type='password'] {
+    padding-left: 10px;
+}
+
+.register-form > Button {
+    color: red;
 }

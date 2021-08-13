@@ -63,20 +63,41 @@ const LoginAndRegister = () => {
 };
 
 const LoginWrapper = () => {
-    return <div className="login-register-inner-wrapper">
+    return(
+    <div className="login-register-inner-wrapper">
+        <input type="text" className="login-register-input" id="register-password" placeholder="Create your password"/>
+        <input type="text" className="login-register-input" id="register-password-confirm" placeholder="Confirm your password"/>
+        <Button                         
+            style={{ marginTop: '30px'}}
+            color="primary" type="submit">Sign In 
+        </Button>
+    </div>
 
-    </div>;
+    );
 };
 
 const RegisterWrapper = () => {
+    var registerEmail = "Email@email.com";
+    var registerUsername;
+    var registerPassword;
+    var registerConfirmation;
+
+
+    const onRegisterSubmit = () => {
+        console.log("Submitted");
+        console.log(registerEmail);
+    }
+
     return( 
         <div className="login-register-inner-wrapper">
-            <form className="register-form">
-                <input type="text" className="login-register-input" id="register-email" placeholder="Enter your email"/>
+            <form className="register-form" onSubmit={onRegisterSubmit()}>
+                <input type="email" className="login-register-input" id="register-email" placeholder="Enter your email"/>
                 <input type="text" className="login-register-input" id="register-username" placeholder="Create your username"/>
-                <input type="text" className="login-register-input" id="register-username" placeholder="Create your password"/>
-                <input type="text" className="login-register-input" id="register-username" placeholder="Confirm your password"/>
-                
+                <input type="password" className="login-register-input" id="register-password" placeholder="Create your password"/>
+                <input type="password" className="login-register-input" id="register-password-confirm" placeholder="Confirm your password"/>
+
+                <input                         
+                    type="submit"/>
 
             </form>
         </div>
