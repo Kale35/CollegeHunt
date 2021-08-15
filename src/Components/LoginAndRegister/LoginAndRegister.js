@@ -63,41 +63,64 @@ const LoginAndRegister = () => {
 };
 
 const LoginWrapper = () => {
-    return(
-    <div className="login-register-inner-wrapper">
-        <input type="text" className="login-register-input" id="register-password" placeholder="Create your password"/>
-        <input type="text" className="login-register-input" id="register-password-confirm" placeholder="Confirm your password"/>
-        <Button                         
-            style={{ marginTop: '30px'}}
-            color="primary" type="submit">Sign In 
-        </Button>
-    </div>
-
-    );
-};
-
-const RegisterWrapper = () => {
-    var registerEmail = "Email@email.com";
+    //Variables to 
+    var registerEmail;
     var registerUsername;
     var registerPassword;
     var registerConfirmation;
 
-
-    const onRegisterSubmit = () => {
+    //Function called after signing up
+    const onLoginSubmit = () => {
+        registerEmail = document.getElementById("login-email-username");
         console.log("Submitted");
         console.log(registerEmail);
     }
 
     return( 
         <div className="login-register-inner-wrapper">
-            <form className="register-form" onSubmit={onRegisterSubmit()}>
+            <form className="login-form">
+                <input type="text" className="login-register-input" id="login-email-username" placeholder="Username/Email"/>
+                <input type="password" className="login-register-input" id="login-username" placeholder="Password"/>
+                <Button                         
+                    color="primary"
+                    size="large"
+                    onClick={onLoginSubmit()}>Sign In
+                </Button>
+
+            </form>
+        </div>
+    );
+};
+
+const RegisterWrapper = () => {
+
+    //Variables to 
+    var registerEmail;
+    var registerUsername;
+    var registerPassword;
+    var registerConfirmation;
+
+    //Function called after signing up
+    const onRegisterSubmit = () => {
+        registerEmail = document.getElementById("register-email");
+        console.log("Submitted");
+        console.log(registerEmail);
+    }
+
+    return( 
+        <div className="login-register-inner-wrapper">
+            <form className="register-form">
                 <input type="email" className="login-register-input" id="register-email" placeholder="Enter your email"/>
                 <input type="text" className="login-register-input" id="register-username" placeholder="Create your username"/>
                 <input type="password" className="login-register-input" id="register-password" placeholder="Create your password"/>
                 <input type="password" className="login-register-input" id="register-password-confirm" placeholder="Confirm your password"/>
 
-                <input                         
-                    type="submit"/>
+                <Button
+                    type="submit"                         
+                    color="secondary"
+                    size="large"
+                    onClick={onRegisterSubmit()}>Submit
+                </Button>
 
             </form>
         </div>
