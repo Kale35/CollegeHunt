@@ -63,42 +63,74 @@ const LoginAndRegister = () => {
 };
 
 const LoginWrapper = () => {
-    return(
-    <div className="login-register-inner-wrapper">
-        <input type="text" className="login-register-input" id="register-password" placeholder="Create your password"/>
-        <input type="text" className="login-register-input" id="register-password-confirm" placeholder="Confirm your password"/>
-        <Button                         
-            style={{ marginTop: '30px'}}
-            color="primary" type="submit">Sign In 
-        </Button>
-    </div>
+     //Variables for user when they register
+     const [loginEmailUsername, setLoginEmailUsername] = useState("");
+     const [loginPassword, setLoginPassword] = useState("");
+ 
+     const onRegisterSubmit = (e) => {
+         e.preventDefault();
+         console.log("Submitted");
+         console.log(registerEmail, registerUsername, registerPassword, registerConfirmation);
+     }
+     
+    return (
+        <div className="login-register-inner-wrapper">
+            <input type="text" className="login-register-input" id="register-password" placeholder="Create your password" />
+            <input type="text" className="login-register-input" id="register-password-confirm" placeholder="Confirm your password" />
+            <Button
+                style={{ marginTop: '30px' }}
+                color="primary" type="submit">Sign In
+            </Button>
+        </div>
 
     );
 };
 
 const RegisterWrapper = () => {
-    var registerEmail = "Email@email.com";
-    var registerUsername;
-    var registerPassword;
-    var registerConfirmation;
 
+    //Variables for user when they register
+    const [registerEmail, setRegisterEmail] = useState("");
+    const [registerUsername, setRegisterUsername] = useState("");
+    const [registerPassword, setRegisterPassword] = useState("");
+    const [registerConfirmation, setRegisterConfirmation] = useState("");
 
-    const onRegisterSubmit = () => {
+    const onRegisterSubmit = (e) => {
+        e.preventDefault();
         console.log("Submitted");
-        console.log(registerEmail);
+        console.log(registerEmail, registerUsername, registerPassword, registerConfirmation);
     }
 
-    return( 
+    return (
         <div className="login-register-inner-wrapper">
-            <form className="register-form" onSubmit={onRegisterSubmit()}>
-                <input type="email" className="login-register-input" id="register-email" placeholder="Enter your email"/>
-                <input type="text" className="login-register-input" id="register-username" placeholder="Create your username"/>
-                <input type="password" className="login-register-input" id="register-password" placeholder="Create your password"/>
-                <input type="password" className="login-register-input" id="register-password-confirm" placeholder="Confirm your password"/>
+            <form className="register-form" onSubmit={(e) => onRegisterSubmit(e)}>
+                <input
+                type="email"
+                className="login-register-input" 
+                id="register-email"
+                placeholder="Enter your email" 
+                onChange={e => setRegisterEmail(e.target.value)} />
 
-                <input                         
-                    type="submit"/>
+                <input
+                type="text"
+                className="login-register-input"
+                id="register-username"
+                placeholder="Create your username"
+                onChange={e => setRegisterUsername(e.target.value)}/>
 
+
+                <input 
+                type="password"
+                className="login-register-input" 
+                id="register-password"
+                placeholder="Create your password"
+                onChange={e => setRegisterPassword(e.target.value)}/>
+
+
+                <input
+                 type="password" className="login-register-input" id="register-password-confirm" placeholder="Confirm your password"  onChange={e => setRegisterConfirmation(e.target.value)}/>
+
+                <input
+                    type="submit" />
             </form>
         </div>
     );
