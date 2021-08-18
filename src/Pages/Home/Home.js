@@ -11,10 +11,7 @@ function Home({ setloginModalVisible, loginModalVisible }) {
             />
 
             <div className="home">
-                <video
-                    className="home__vid"
-                    src={College}
-                ></video>
+                <video className="home__vid" src={College}></video>
                 <input
                     className="home__search"
                     placeholder="Search college, major, or question "
