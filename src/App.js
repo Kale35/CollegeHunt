@@ -1,12 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
 import Home from './Pages/Home/Home.js';
-import React, { useState } from 'react';
+import React from 'react';
 
 function App() {
     return (
         <div className="App">
-            <Home></Home>
+            <Home />
         </div>
     );
 }

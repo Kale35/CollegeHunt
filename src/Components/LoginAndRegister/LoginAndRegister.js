@@ -1,42 +1,84 @@
 import React, { useState } from 'react';
 import './LoginAndRegister.css';
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
-import VpnKeyIcon from '@material-ui/icons/VpnKey';
-import LockOpenIcon from '@material-ui/icons/LockOpen';
-import { Button } from '@material-ui/core';
+import {
+    Button,
+    Grid,
+    TextField,
+    FormControlLabel,
+    Checkbox,
+    Link,
+    Container,
+    Avatar,
+} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import {
+    LockOutlined,
+    LockOpen,
+    PersonAdd,
+    PersonAddOutlined,
+    CloseOutlined,
+} from '@material-ui/icons';
 
-const LoginAndRegister = () => {
+const useStyles = makeStyles((theme) => ({
+    paper: {
+        marginTop: theme.spacing(8),
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+    avatar: {
+        margin: theme.spacing(1),
+        backgroundColor: theme.palette.secondary.main,
+    },
+    form: {
+        width: '100%', // Fix IE 11 issue.
+        marginTop: theme.spacing(1),
+    },
+    submit: {
+        margin: theme.spacing(3, 0, 2),
+    },
+    rememberme: {
+        verticalAlign: 'middle',
+    },
+}));
+
+const LoginAndRegister = ({ setModalShown }) => {
+    const classes = useStyles();
     const [activeTab, setactiveTab] = useState('login');
 
     return (
         <div className="login-register-modal">
             <div className="login-register-modal__wrapper">
+                <div className="login-register-modal__close">
+                    <Grid container justifyContent="space-between">
+                        <Grid item></Grid>
+                        <Grid item>
+                            <Button
+                                variant="text"
+                                onClick={() => setModalShown(false)}
+                            >
+                                <CloseOutlined />
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </div>
                 <div className="login-register-modal__logo">
-                    {activeTab && activeTab === 'login' ? (
-                        <VpnKeyIcon
-                            color={
-                                activeTab && activeTab === 'login'
-                                    ? 'primary'
-                                    : 'disabled'
-                            }
-                            style={{ fontSize: 100 }}
-                        />
-                    ) : (
-                        <PersonAddIcon
-                            color={
-                                activeTab && activeTab === 'register'
-                                    ? 'secondary'
-                                    : 'disabled'
-                            }
-                            style={{ fontSize: 100 }}
-                        />
-                    )}
+                    <Avatar
+                        className={classes.avatar}
+                        style={{ width: 65, height: 65 }}
+                    >
+                        {activeTab && activeTab === 'login' ? (
+                            <LockOutlined style={{ fontSize: 45 }} />
+                        ) : (
+                            <PersonAddOutlined style={{ fontSize: 45 }} />
+                        )}
+                    </Avatar>
                 </div>
                 <div className="login-register-modal__tabs">
                     <Button
                         color="primary"
                         size="large"
-                        startIcon={<LockOpenIcon />}
+                        startIcon={<LockOpen />}
                         style={{ marginRight: '15px' }}
                         onClick={() => setactiveTab('login')}
                     >
@@ -45,7 +87,7 @@ const LoginAndRegister = () => {
                     <Button
                         color="secondary"
                         size="large"
-                        startIcon={<PersonAddIcon />}
+                        startIcon={<PersonAdd />}
                         onClick={() => setactiveTab('register')}
                     >
                         Register
@@ -53,86 +95,172 @@ const LoginAndRegister = () => {
                 </div>
 
                 {activeTab && activeTab === 'login' ? (
-                    <LoginWrapper />
+                    <LoginWrapper setactiveTab={setactiveTab} />
                 ) : (
-                    <RegisterWrapper />
+                    <RegisterWrapper setactiveTab={setactiveTab} />
                 )}
             </div>
         </div>
     );
 };
 
-const LoginWrapper = () => {
-     //Variables for user when they register
-     const [loginEmailUsername, setLoginEmailUsername] = useState("");
-     const [loginPassword, setLoginPassword] = useState("");
- 
-     const onRegisterSubmit = (e) => {
-         e.preventDefault();
-         console.log("Submitted");
-         console.log(registerEmail, registerUsername, registerPassword, registerConfirmation);
-     }
-     
-    return (
-        <div className="login-register-inner-wrapper">
-            <input type="text" className="login-register-input" id="register-password" placeholder="Create your password" />
-            <input type="text" className="login-register-input" id="register-password-confirm" placeholder="Confirm your password" />
-            <Button
-                style={{ marginTop: '30px' }}
-                color="primary" type="submit">Sign In
-            </Button>
-        </div>
+const LoginWrapper = ({ setactiveTab }) => {
+    const classes = useStyles();
 
+    return (
+        <Container component="main" maxWidth="sm">
+            <form className={classes.form} noValidate>
+                <div className="login-register-inner-wrapper">
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="usernameOrEmail"
+                        label="Username or Email Address"
+                        name="usernameOrEmail"
+                        autoFocus
+                    />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="password"
+                        label="Password"
+                        type="password"
+                        id="password"
+                        autoComplete="current-password"
+                    />
+                    <FormControlLabel
+                        control={<Checkbox value="remember" color="primary" />}
+                        label="Remember my login details"
+                        className={classes.rememberme}
+                    />
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        size="medium"
+                        className={classes.submit}
+                    >
+                        Login
+                    </Button>
+                    <Grid container justifyContent="space-between">
+                        <Grid item>
+                            <Link
+                                href="#"
+                                variant="body2"
+                                onClick={(e) => e.preventDefault()}
+                            >
+                                Forgot password?
+                            </Link>
+                        </Grid>
+                        <Grid item>
+                            <Link
+                                href="#"
+                                variant="body2"
+                                onClick={() => setactiveTab('register')}
+                            >
+                                {"Don't have an account? Sign Up"}
+                            </Link>
+                        </Grid>
+                    </Grid>
+                </div>
+            </form>
+        </Container>
     );
 };
 
-const RegisterWrapper = () => {
-
+const RegisterWrapper = ({ setactiveTab }) => {
+    const classes = useStyles();
     //Variables for user when they register
-    const [registerEmail, setRegisterEmail] = useState("");
-    const [registerUsername, setRegisterUsername] = useState("");
-    const [registerPassword, setRegisterPassword] = useState("");
-    const [registerConfirmation, setRegisterConfirmation] = useState("");
+    const [registerEmail, setRegisterEmail] = useState('');
+    const [registerUsername, setRegisterUsername] = useState('');
+    const [registerPassword, setRegisterPassword] = useState('');
+    const [registerConfirmation, setRegisterConfirmation] = useState('');
 
     const onRegisterSubmit = (e) => {
         e.preventDefault();
-        console.log("Submitted");
-        console.log(registerEmail, registerUsername, registerPassword, registerConfirmation);
-    }
+        console.log('Submitted');
+        console.log(
+            registerEmail,
+            registerUsername,
+            registerPassword,
+            registerConfirmation
+        );
+    };
 
     return (
-        <div className="login-register-inner-wrapper">
-            <form className="register-form" onSubmit={(e) => onRegisterSubmit(e)}>
-                <input
-                type="email"
-                className="login-register-input" 
-                id="register-email"
-                placeholder="Enter your email" 
-                onChange={e => setRegisterEmail(e.target.value)} />
-
-                <input
-                type="text"
-                className="login-register-input"
-                id="register-username"
-                placeholder="Create your username"
-                onChange={e => setRegisterUsername(e.target.value)}/>
-
-
-                <input 
-                type="password"
-                className="login-register-input" 
-                id="register-password"
-                placeholder="Create your password"
-                onChange={e => setRegisterPassword(e.target.value)}/>
-
-
-                <input
-                 type="password" className="login-register-input" id="register-password-confirm" placeholder="Confirm your password"  onChange={e => setRegisterConfirmation(e.target.value)}/>
-
-                <input
-                    type="submit" />
+        <Container component="main" maxWidth="sm">
+            <form className={classes.form} noValidate>
+                <div className="login-register-inner-wrapper">
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="email"
+                        label="Email Address"
+                        name="email"
+                        autoFocus
+                    />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="username"
+                        label="Desired Username"
+                        name="username"
+                    />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="password"
+                        label="Password"
+                        type="password"
+                        id="password"
+                        autoComplete="current-password"
+                    />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="repassword"
+                        label="Retype Password"
+                        type="repassword"
+                        id="repassword"
+                    />
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        size="medium"
+                        className={classes.submit}
+                    >
+                        Register
+                    </Button>
+                    <Grid container justifyContent="space-between">
+                        <Grid item></Grid>
+                        <Grid item>
+                            <Link
+                                href="#"
+                                variant="body2"
+                                onClick={(e) => setactiveTab('login')}
+                            >
+                                Already have an account? Login
+                            </Link>
+                        </Grid>
+                    </Grid>
+                </div>
             </form>
-        </div>
+        </Container>
     );
 };
 

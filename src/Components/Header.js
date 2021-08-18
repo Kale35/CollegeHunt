@@ -9,7 +9,9 @@ function Header() {
 
     return (
         <React.Fragment>
-            {modalShown ? <LoginAndRegister /> : null }
+            {modalShown ? (
+                <LoginAndRegister setModalShown={setModalShown} />
+            ) : null}
             <div className="header">
                 <div className="header__logo">
                     <SchoolIcon></SchoolIcon>
