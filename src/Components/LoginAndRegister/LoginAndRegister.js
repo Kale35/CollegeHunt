@@ -104,10 +104,10 @@ const RegisterWrapper = () => {
     const onRegisterSubmit = () => {
         registerEmail = document.getElementById("register-email");
         console.log("Submitted");
-        console.log(registerEmail);
+        console.log(registerEmail, registerUsername, registerPassword, registerConfirmation);
     }
 
-    return( 
+    return (
         <div className="login-register-inner-wrapper">
             <form className="register-form">
                 <input type="email" className="login-register-input" id="register-email" placeholder="Enter your email"/>
@@ -122,6 +122,8 @@ const RegisterWrapper = () => {
                     onClick={onRegisterSubmit()}>Submit
                 </Button>
 
+                <input
+                    type="submit" />
             </form>
         </div>
     );
