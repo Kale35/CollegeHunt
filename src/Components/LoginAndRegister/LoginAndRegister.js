@@ -63,64 +63,72 @@ const LoginAndRegister = () => {
 };
 
 const LoginWrapper = () => {
-    //Variables to 
-    var registerEmail;
-    var registerUsername;
-    var registerPassword;
-    var registerConfirmation;
-
-    //Function called after signing up
-    const onLoginSubmit = () => {
-        registerEmail = document.getElementById("login-email-username");
-        console.log("Submitted");
-        console.log(registerEmail);
-    }
-
-    return( 
+     //Variables for user when they register
+     const [loginEmailUsername, setLoginEmailUsername] = useState("");
+     const [loginPassword, setLoginPassword] = useState("");
+ 
+     const onLoginSubmit = (e) => {
+         e.preventDefault();
+         console.log("Submitted");
+         console.log(loginEmailUsername, loginPassword);
+     }
+     
+    return (
         <div className="login-register-inner-wrapper">
-            <form className="login-form">
-                <input type="text" className="login-register-input" id="login-email-username" placeholder="Username/Email"/>
-                <input type="password" className="login-register-input" id="login-username" placeholder="Password"/>
-                <Button                         
-                    color="primary"
-                    size="large"
-                    onClick={onLoginSubmit()}>Sign In
-                </Button>
-
+            <form className="register-form" onSubmit={(e) => onLoginSubmit(e)}>
+                <input onChange={e => setLoginEmailUsername(e.target.value)} type="text" className="login-register-input" id="register-password" placeholder="Email/Username" />
+                <input onChange={e => setLoginPassword(e.target.value)} type="password" className="login-register-input" id="register-password-confirm" placeholder="Password" />
+                <input
+                    type="submit"
+               />
             </form>
         </div>
+
     );
 };
 
 const RegisterWrapper = () => {
 
-    //Variables to 
-    var registerEmail;
-    var registerUsername;
-    var registerPassword;
-    var registerConfirmation;
+    //Variables for user when they register
+    const [registerEmail, setRegisterEmail] = useState("");
+    const [registerUsername, setRegisterUsername] = useState("");
+    const [registerPassword, setRegisterPassword] = useState("");
+    const [registerConfirmation, setRegisterConfirmation] = useState("");
 
-    //Function called after signing up
-    const onRegisterSubmit = () => {
-        registerEmail = document.getElementById("register-email");
+    const onRegisterSubmit = (e) => {
+        e.preventDefault();
         console.log("Submitted");
         console.log(registerEmail, registerUsername, registerPassword, registerConfirmation);
     }
 
     return (
         <div className="login-register-inner-wrapper">
-            <form className="register-form">
-                <input type="email" className="login-register-input" id="register-email" placeholder="Enter your email"/>
-                <input type="text" className="login-register-input" id="register-username" placeholder="Create your username"/>
-                <input type="password" className="login-register-input" id="register-password" placeholder="Create your password"/>
-                <input type="password" className="login-register-input" id="register-password-confirm" placeholder="Confirm your password"/>
+            <form className="register-form" onSubmit={(e) => onRegisterSubmit(e)}>
+                <input
+                type="email"
+                className="login-register-input" 
+                id="register-email"
+                placeholder="Enter your email" 
+                onChange={e => setRegisterEmail(e.target.value)} />
 
-                <Button
-                    type="submit"                         
-                    color="secondary"
-                    size="large"
-                    onClick={onRegisterSubmit()}>Submit
-                </Button>
+                <input
+                type="text"
+                className="login-register-input"
+                id="register-username"
+                placeholder="Create your username"
+                onChange={e => setRegisterUsername(e.target.value)}/>
+
+
+                <input 
+                type="password"
+                className="login-register-input" 
+                id="register-password"
+                placeholder="Create your password"
+                onChange={e => setRegisterPassword(e.target.value)}/>
+
+
+                <input
+                 type="password" className="login-register-input" id="register-password-confirm" placeholder="Confirm your password"  onChange={e => setRegisterConfirmation(e.target.value)}/>
 
                 <input
                     type="submit" />
