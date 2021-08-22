@@ -10,7 +10,7 @@ function Home({ setloginModalVisible, loginModalVisible }) {
             />
 
             <div className="home">
-                
+                <img src="https://www.capturehighered.com/wp-content/uploads/2017/11/AdobeStock_76029922-720x360.jpeg"></img>
                 <input
                     className="home__search"
                     placeholder="Search college, major, or question "
