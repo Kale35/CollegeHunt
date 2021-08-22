@@ -67,21 +67,19 @@ const LoginWrapper = () => {
      const [loginEmailUsername, setLoginEmailUsername] = useState("");
      const [loginPassword, setLoginPassword] = useState("");
  
-     const onLoginSubmit = (e) => {
+     const onRegisterSubmit = (e) => {
          e.preventDefault();
          console.log("Submitted");
-         console.log(loginEmailUsername, loginPassword);
      }
      
     return (
         <div className="login-register-inner-wrapper">
-            <form className="register-form" onSubmit={(e) => onLoginSubmit(e)}>
-                <input onChange={e => setLoginEmailUsername(e.target.value)} type="text" className="login-register-input" id="register-password" placeholder="Email/Username" />
-                <input onChange={e => setLoginPassword(e.target.value)} type="password" className="login-register-input" id="register-password-confirm" placeholder="Password" />
-                <input
-                    type="submit"
-               />
-            </form>
+            <input type="text" className="login-register-input" id="register-password" placeholder="Username" />
+            <input type="text" className="login-register-input" id="register-password-confirm" placeholder="Password" />
+            <Button
+                style={{ marginTop: '30px' }}
+                color="primary" type="submit">Sign In
+            </Button>
         </div>
 
     );
@@ -94,11 +92,18 @@ const RegisterWrapper = () => {
     const [registerUsername, setRegisterUsername] = useState("");
     const [registerPassword, setRegisterPassword] = useState("");
     const [registerConfirmation, setRegisterConfirmation] = useState("");
-
+    
     const onRegisterSubmit = (e) => {
         e.preventDefault();
-        console.log("Submitted");
         console.log(registerEmail, registerUsername, registerPassword, registerConfirmation);
+        const user = {
+            name: registerEmail, 
+            username: registerUsername, 
+            password: registerPassword, 
+            confirm: registerConfirmation
+        }
+        axios.post;
+        
     }
 
     return (
@@ -108,30 +113,31 @@ const RegisterWrapper = () => {
                 type="email"
                 className="login-register-input" 
                 id="register-email"
-                placeholder="Enter your email" 
+                placeholder="Email" 
                 onChange={e => setRegisterEmail(e.target.value)} />
-
+                
                 <input
                 type="text"
                 className="login-register-input"
                 id="register-username"
-                placeholder="Create your username"
+                placeholder="Username"
                 onChange={e => setRegisterUsername(e.target.value)}/>
-
-
+                
                 <input 
                 type="password"
                 className="login-register-input" 
                 id="register-password"
-                placeholder="Create your password"
+                placeholder="Password"
                 onChange={e => setRegisterPassword(e.target.value)}/>
-
-
+                
                 <input
-                 type="password" className="login-register-input" id="register-password-confirm" placeholder="Confirm your password"  onChange={e => setRegisterConfirmation(e.target.value)}/>
-
-                <input
-                    type="submit" />
+                 type="password" 
+                 className="login-register-input" 
+                 id="register-password-confirm" 
+                 placeholder="Confirm"  
+                 onChange={e => setRegisterConfirmation(e.target.value)}/>
+                                
+                <input type="submit" />
             </form>
         </div>
     );
