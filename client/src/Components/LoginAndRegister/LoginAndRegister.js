@@ -77,6 +77,7 @@ const LoginWrapper = () => {
             <input type="text" className="login-register-input" id="register-password" placeholder="Username" />
             <input type="text" className="login-register-input" id="register-password-confirm" placeholder="Password" />
             <Button
+                onClick={onRegisterSubmit()}
                 style={{ marginTop: '30px' }}
                 color="primary" type="submit">Sign In
             </Button>
@@ -95,15 +96,21 @@ const RegisterWrapper = () => {
     
     const onRegisterSubmit = (e) => {
         e.preventDefault();
-        console.log(registerEmail, registerUsername, registerPassword, registerConfirmation);
-        const user = {
+        
+        if(registerPassword != registerConfirmation){
+            alert("Passwords do not match")
+        }
+
+        else{
+            console.log(registerEmail, registerUsername, registerPassword, registerConfirmation);
+            const user = {
             name: registerEmail, 
             username: registerUsername, 
             password: registerPassword, 
             confirm: registerConfirmation
         }
         axios.post;
-        
+        }
     }
 
     return (
